@@ -1,0 +1,41 @@
+public class Person {
+
+  char gender;
+  int age;
+  String race;
+  String nationality;
+
+  public Person(char startGender, int startAge, String startRace, String startNationality) {
+
+    gender = startGender;
+    age = startAge;
+    race = startRace;
+    nationality = startNationality;
+
+  }
+
+  public void addAge(int years) {
+
+        age = age + years;
+
+  }
+
+  public void getInfo() {
+
+    System.out.println("Gender: " + gender);
+    System.out.println("Age: " + age);
+    System.out.println("Race: " + race);
+    System.out.println("Nationality: " + nationality);
+
+  }
+
+  public static void main(String args[]) {
+
+    Person patrick = new Person('M', 36, "ASIAN", "THAI");
+    patrick.getInfo();
+    patrick.addAge(5);
+    patrick.getInfo();
+
+  }
+
+}
