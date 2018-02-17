@@ -2,15 +2,11 @@ import java.util.*;
 
 public class SubsequenceChecker{
     
-    String W;
-    int sPointer;
-    int dPointer;
-    
     // Method to sort the string array by length
     public static void lengthSort(String[] D) {
         Arrays.sort(D, new Comparator<String>() {
             public int compare(String s1,String s2) {
-                return s1.length() - s2.length();
+                return s2.length() - s1.length();
             }
         });
     
@@ -19,30 +15,50 @@ public class SubsequenceChecker{
         }
     }
     
-    // Method to quickly find first word with some length from sorted dictionary
-    public static int findIndex(String[] D, int wordLength) {
-        int p = D.length/2;
-        int i;
+    // Method to find first word with minimum S.length()
+    public static int findIndex(String[] D, String S) {
+        
+        int i = 0;
+    
+        while (D[i].length() > S.length()) {
+            i = i + 1;
+        }
         
         return i;
+        
     }
     
-    public static void checkSub(String S, String[] D) {
+    public static String checkSub(String[] D, String S, int i) {
         
+        String maxSub;
         
+        for (int i = 0; i < D.length; i++) {
+            
+        }
+        
+        return maxSub;
     }
 
     public static void main(String []args){
   
         String S = "abppplee";
-        String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo"};
-    
+        String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo", "looooongword"};
         
         // Sort by length
         lengthSort(D);
-        // Jump to first word where length equals input string length
-        int i = findIndex(D, 4);
-        System.out.print(i);
+        
+        // Check if all words in D are longer than S
+        if (D[D.length-1].length() > S.length()) {
+            System.out.println("No subsequences found in Dictionary");
+        }
+        
+        // Jump to first word where length equals input string length (right to left)
+        int i = findIndex(D, S);
+        System.out.println(i);
+       
+        // Check dictionary for subsequence
+        String W = checkSub(D, S, i);
+        System.out.println(W);
         
     }
 }
