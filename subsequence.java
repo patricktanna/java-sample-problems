@@ -30,19 +30,36 @@ public class SubsequenceChecker{
     
     public static String checkSub(String[] D, String S, int i) {
         
-        String maxSub;
+        String maxSub = "No subsequences found.";
+        int c = 0;
+        int j = 0;
+        int k = 0;
         
-        for (int i = 0; i < D.length; i++) {
+        while (c != D[i].length() && k < S.length() && j < D[i].length()) {
             
+            System.out.println( "DicChar:" + j + ", StringChar:" + k + ", Count:" + c + ", Word:" + D[i]);
+            
+            if (c == D[i].length()) {
+                maxSub = D[i];
+            } else if (D[i].charAt(j) == S.charAt(k)) {
+                j = j + 1;
+                k = k + 1;
+                c = c + 1;
+            } else {
+                k = k + 1;
+            }
+          
         }
         
-        return maxSub;
+       return maxSub;
+
     }
 
     public static void main(String []args){
   
         String S = "abppplee";
-        String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo", "looooongword"};
+        //String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo", "looooongword"};
+        String[] D = {"pat", "ae"};
         
         // Sort by length
         lengthSort(D);
@@ -54,7 +71,7 @@ public class SubsequenceChecker{
         
         // Jump to first word where length equals input string length (right to left)
         int i = findIndex(D, S);
-        System.out.println(i);
+        System.out.println("S=D:" + i);
        
         // Check dictionary for subsequence
         String W = checkSub(D, S, i);
