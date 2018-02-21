@@ -35,9 +35,7 @@ public class SubsequenceChecker{
         int k = 0;
         int c = 0;
         
-        System.out.println("String Length: " + S.length());
-        
-        while (i < D.length && c != D[i].length()-1) {
+        while (i < D.length-1 && c != D[i].length()-1) {
             
             System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
             if (j > D[i].length()-1 || k > S.length()-1) {
@@ -54,8 +52,13 @@ public class SubsequenceChecker{
             }
         
         }
-        System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
-        maxSub = D[i];
+        
+        // System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
+        
+        if (c != 0) {
+            maxSub = D[i];
+        }
+        
         return maxSub;
 
     }
@@ -63,8 +66,8 @@ public class SubsequenceChecker{
     public static void main(String []args){
   
         String S = "abppplee";
-        String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo", "looooongword"};
-        // String[] D = {"apple", "pat"};
+        // String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo", "looooongword"};
+        String[] D = {"pat"};
         
         // Sort by length
         lengthSort(D);
@@ -76,11 +79,10 @@ public class SubsequenceChecker{
         
         // Jump to first word where length equals input string length (right to left)
         int i = findIndex(D, S);
-        System.out.println("S=D:" + i);
        
         // Check dictionary for subsequence
         String W = checkSub(D, S, i);
-        System.out.println(W);
+        System.out.println("Max subsequence found: " + W);
         
     }
 }
