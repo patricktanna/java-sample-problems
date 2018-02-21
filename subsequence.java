@@ -32,26 +32,31 @@ public class SubsequenceChecker{
         
         String maxSub = "No subsequences found.";
         int c = 0;
-        int j = 0;
-        int k = 0;
         
-        while (c != D[i].length() && k < S.length() && j < D[i].length()) {
-            
-            System.out.println( "DicChar:" + j + ", StringChar:" + k + ", Count:" + c + ", Word:" + D[i]);
-            
-            if (c == D[i].length()) {
-                maxSub = D[i];
-            } else if (D[i].charAt(j) == S.charAt(k)) {
-                j = j + 1;
-                k = k + 1;
-                c = c + 1;
-            } else {
-                k = k + 1;
+        System.out.println("String Length: " + S.length());
+        
+        while (i < D.length-i) {
+            for (int j = 0; j < S.length(); j++) {
+                for (int k = 0; k < D[i].length() || i < D.length-i; k++) {
+                    if (c == D[i].length()) {
+                        maxSub = D[i];
+                        return maxSub;
+                    } else if (D[i].charAt(j) == S.charAt(k)) {
+                        S = S.substring(k, S.length());
+                        System.out.println(D[i]);
+                        System.out.println("Iteration " + k + ":" + S);
+                        c = c + 1;
+                        System.out.println("Count " + c);
+                        k = 0;
+                    } else {
+                        c = 0;
+                        i = i + 1;
+                    }
+                }
             }
-          
         }
         
-       return maxSub;
+        return maxSub;
 
     }
 
@@ -59,7 +64,7 @@ public class SubsequenceChecker{
   
         String S = "abppplee";
         //String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo", "looooongword"};
-        String[] D = {"pat", "ae"};
+        String[] D = {"apple", "pat"};
         
         // Sort by length
         lengthSort(D);
