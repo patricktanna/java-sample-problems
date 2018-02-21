@@ -9,10 +9,12 @@ public class SubsequenceChecker{
                 return s2.length() - s1.length();
             }
         });
-    
+        
+        /*
         for (int i = 0; i < D.length; i++)  {
             System.out.println(D[i]);
         }
+        */
     }
     
     // Method to find first word with minimum S.length()
@@ -20,7 +22,7 @@ public class SubsequenceChecker{
         
         int i = 0;
     
-        while (D[i].length() > S.length()) {
+        while (D[i].length() > S.length() && i < D.length-1) {
             i = i + 1;
         }
         
@@ -37,7 +39,8 @@ public class SubsequenceChecker{
         
         while (i < D.length-1 && c != D[i].length()-1) {
             
-            System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
+            // System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
+            
             if (j > D[i].length()-1 || k > S.length()-1) {
                 i = i + 1;
                 j = 0;
@@ -56,7 +59,7 @@ public class SubsequenceChecker{
         // System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
         
         if (c != 0) {
-            maxSub = D[i];
+            maxSub = "Max subsequence = "+D[i];
         }
         
         return maxSub;
@@ -66,23 +69,23 @@ public class SubsequenceChecker{
     public static void main(String []args){
   
         String S = "abppplee";
-        // String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo", "looooongword"};
-        String[] D = {"pat"};
+        String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo", "looooongword"};
+        // String[] D = {"patgfasggsdffg", "applepatgfasggsdffg"};
         
         // Sort by length
         lengthSort(D);
         
         // Check if all words in D are longer than S
         if (D[D.length-1].length() > S.length()) {
-            System.out.println("No subsequences found in Dictionary");
+            System.out.println("No subsequences found.");
+        } else {
+            // Jump to first word where length equals input string length (right to left)
+            int i = findIndex(D, S);
+           
+            // Check dictionary for subsequence
+            String W = checkSub(D, S, i);
+            System.out.println(W);
         }
-        
-        // Jump to first word where length equals input string length (right to left)
-        int i = findIndex(D, S);
-       
-        // Check dictionary for subsequence
-        String W = checkSub(D, S, i);
-        System.out.println("Max subsequence found: " + W);
         
     }
 }
