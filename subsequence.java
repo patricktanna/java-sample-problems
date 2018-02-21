@@ -31,31 +31,31 @@ public class SubsequenceChecker{
     public static String checkSub(String[] D, String S, int i) {
         
         String maxSub = "No subsequences found.";
+        int j = 0;
+        int k = 0;
         int c = 0;
         
         System.out.println("String Length: " + S.length());
         
-        while (i < D.length-i) {
-            for (int j = 0; j < S.length(); j++) {
-                for (int k = 0; k < D[i].length() || i < D.length-i; k++) {
-                    if (c == D[i].length()) {
-                        maxSub = D[i];
-                        return maxSub;
-                    } else if (D[i].charAt(j) == S.charAt(k)) {
-                        S = S.substring(k, S.length());
-                        System.out.println(D[i]);
-                        System.out.println("Iteration " + k + ":" + S);
-                        c = c + 1;
-                        System.out.println("Count " + c);
-                        k = 0;
-                    } else {
-                        c = 0;
-                        i = i + 1;
-                    }
-                }
+        while (i < D.length && c != D[i].length()-1) {
+            
+            System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
+            if (j > D[i].length()-1 || k > S.length()-1) {
+                i = i + 1;
+                j = 0;
+                k = 0;
+                c = 0;
+            } else if (D[i].charAt(j) == S.charAt(k)) {
+                j = j + 1;
+                k = k + 1;
+                c = c + 1;
+            } else {
+                k = k + 1;
             }
-        }
         
+        }
+        System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
+        maxSub = D[i];
         return maxSub;
 
     }
@@ -63,8 +63,8 @@ public class SubsequenceChecker{
     public static void main(String []args){
   
         String S = "abppplee";
-        //String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo", "looooongword"};
-        String[] D = {"apple", "pat"};
+        String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo", "looooongword"};
+        // String[] D = {"apple", "pat"};
         
         // Sort by length
         lengthSort(D);
