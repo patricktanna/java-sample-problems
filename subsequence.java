@@ -79,9 +79,9 @@ public class SubsequenceChecker{
         int k = 0;
         int c = 0;
         
-        while (i < D.length && c != D[i].length()-1) {
+        while (i < D.length && c <= D[i].length()-1) {
             
-            System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
+            // System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
             
             if (j > D[i].length()-1 || k > S.length()-1) {
                 i = i + 1;
@@ -98,7 +98,7 @@ public class SubsequenceChecker{
         
         }
         
-        System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
+        // System.out.println("i:"+i+" j:"+j+" k:"+k+" c:"+c);
         
         if (c != 0) {
             maxSub = "Max subsequence = "+D[i];
@@ -113,17 +113,20 @@ public class SubsequenceChecker{
         // input string
         String S = "abppplee";
         
-        // Dictionary
+        // Dictionary test cases
         String[] D = {"pat", "able", "ale", "apple","bale", "kangaroo", "looooongword"};
         // String[] D = {"patgfasggsdffg", "applepatgfasggsdffg"};
         // String[] D = {"pat", "ae"};
+        // String[] D = {"e"};
+        // String[] D = {"z"};
+        // String[] D = {"abppplee", "abppplee", "abppplee"};
         
         // Sort by length
         lengthSort(D);
         
         // Check if all words in D are longer than S. If so, then a subsequence isn't possible.
         if (D[D.length-1].length() > S.length()) {
-            System.out.println("No subsequences found.");
+            System.out.println("All dictionary words are longer than the input string.");
         } else {
             // Jump to first word where length equals input string length (right to left)
             int i = findIndex(D, S);
